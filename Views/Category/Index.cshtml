@@ -1,0 +1,10 @@
+﻿<div style="padding-top:30px">
+    <h3>Список категорій</h3>
+    <table class="table">
+        <tr><td><p>Name</p></td><td><p>Slug</p></td><td><p>ParentId</p></td></tr>
+        @foreach (var st in ViewBag.Categories)
+        {
+            <tr><td><p>@st.Name</p></td><td><p>@st.Slug</p></td><td><p>@st.ParentId</p></td></tr>
+        }
+    </table>
+</div>

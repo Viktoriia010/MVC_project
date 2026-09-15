@@ -1,0 +1,10 @@
+﻿<div style="padding-top:30px">
+    <h3>Список юзерів</h3>
+    <table class="table">
+        <tr><td><p>Email</p></td><td><p>Role</p></td></tr>
+        @foreach (var st in ViewBag.Users)
+        {
+            <tr><td><p>@st.Email</p></td><td><p>@st.Role</p></td></tr>
+        }
+    </table>
+</div>

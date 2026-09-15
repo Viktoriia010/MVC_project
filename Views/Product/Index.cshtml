@@ -1,0 +1,10 @@
+﻿<div style="padding-top:30px">
+    <h3>Список продуктів</h3>
+    <table class="table">
+        <tr><td><p>Name</p></td><td><p>Description</p></td><td><p>Price</p></td><td><p>StockQty</p></td><td><p>Active</p></td></tr>
+        @foreach (var st in ViewBag.Products)
+        {
+            <tr><td><p>@st.name</p></td><td><p>@st.description</p></td><td><p>@st.price</p></td><td><p>@st.stock_qty</p></td><td><p>@st.is_active</p></td></tr>
+        }
+    </table>
+</div>

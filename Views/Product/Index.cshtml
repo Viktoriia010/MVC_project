@@ -1,10 +1,88 @@
-﻿<div style="padding-top:30px">
-    <h3>Список продуктів</h3>
-    <table class="table">
-        <tr><td><p>Name</p></td><td><p>Description</p></td><td><p>Price</p></td><td><p>StockQty</p></td><td><p>Active</p></td></tr>
-        @foreach (var st in ViewBag.Products)
+﻿@model IEnumerable<MvcProject.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock_qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
         {
-            <tr><td><p>@st.name</p></td><td><p>@st.description</p></td><td><p>@st.price</p></td><td><p>@st.stock_qty</p></td><td><p>@st.is_active</p></td></tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock_qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.is_active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_id)
+                </td>
+                    <td>
+                        <div class="d-flex gap-2">
+
+                            <a asp-action="Details"
+                               asp-route-id="@item.id"
+                               class="btn btn-sm btn-outline-info">
+                                Details
+                            </a>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@item.id"
+                               class="btn btn-sm btn-outline-primary">
+                                Edit
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@item.id"
+                               class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </a>
+
+                        </div>
+                    </td>
+
+            </tr>
         }
-    </table>
-</div>
+    </tbody>
+</table>

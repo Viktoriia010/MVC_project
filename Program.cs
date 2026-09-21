@@ -21,6 +21,11 @@ namespace MvcProject
         {
             var builder = WebApplication.CreateBuilder(args);
             string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<ProductContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
+
 
             // добавляем контекст ApplicationContext в качестве сервиса в приложение
             //builder.Services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
@@ -53,7 +58,7 @@ namespace MvcProject
             builder.Services.AddScoped<ICachingService, RedisCachingService>();
             builder.Services.AddScoped<IPasswordResetTokenService, PasswordResetTokenService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
-
+            builder.Services.AddScoped<IProductService,ProductService>();
 
             //============================================
             //------------------HELPERS-------------
@@ -78,8 +83,8 @@ namespace MvcProject
                 app.UseHsts();
             }
 
- 
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseRouting();
 
